@@ -6,7 +6,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.invaders.game.Invaders;
-import com.invaders.game.sound.SoundManager;
 import com.invaders.game.sound.SoundProvider;
 import com.invaders.game.texture.TextureManager;
 
