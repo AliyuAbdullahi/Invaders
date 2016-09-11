@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.invaders.game.Invaders;
-import com.invaders.game.gameover.GameOver;
+import com.invaders.game.screen.gameover.GameOver;
 import com.invaders.game.screen.ScreenManager;
 import com.invaders.game.sound.SoundProvider;
 import com.invaders.game.texture.TextureManager;
@@ -14,7 +14,6 @@ import com.invaders.game.texture.TextureManager;
  * Created by aliyuabdullahi on 9/7/16.
  */
 public class EntityManager {
-
     private final Array<Entity> entities = new Array<Entity>();
     private Player player;
 
@@ -86,7 +85,7 @@ public class EntityManager {
                 if(enemy.getBounds().overlaps(missile.getBounds())){
                     entities.removeValue(enemy, false);
                     entities.removeValue(missile, false);
-                    SoundProvider.playSound(SoundProvider.InvaderSound.ENEMY_DEAD, false);
+                    SoundProvider.playSound(SoundProvider.InvaderSound.ENEMY_DEAD, Enemy.sound ,false);
                     if(gameWon()){
                         ScreenManager.setScreen(new GameOver(true));
                     }

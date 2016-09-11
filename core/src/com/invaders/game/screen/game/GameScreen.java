@@ -1,4 +1,4 @@
-package com.invaders.game.game;
+package com.invaders.game.screen.game;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,7 +12,8 @@ import com.invaders.game.sound.SoundProvider;
  */
 public class GameScreen extends Screen {
     private OrthoCamera camera;
-    private Sound sound;
+    public static Sound sound;
+    public static long soundId;
     private EntityManager entityManager;
     @Override
     public void create() {
@@ -20,7 +21,7 @@ public class GameScreen extends Screen {
 
         entityManager = new EntityManager(10);
 
-        SoundProvider.playSound(SoundProvider.InvaderSound.GAME_SOUND, true);
+        soundId = SoundProvider.playSound(SoundProvider.InvaderSound.GAME_SOUND, sound ,true);
     }
 
     @Override

@@ -5,20 +5,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.invaders.game.game.GameScreen;
 import com.invaders.game.screen.ScreenManager;
+import com.invaders.game.screen.game.GameScreen;
 
 public class Invaders extends ApplicationAdapter {
     SpriteBatch batch;
     Texture img;
-
+    Integer x;
     public static final int WIDTH = 480, HEIGHT = 800;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         ScreenManager.setScreen(new GameScreen());
-
     }
 
     @Override

@@ -1,32 +1,22 @@
-package com.invaders.game.gameover;
+package com.invaders.game.screen.game;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.invaders.game.Invaders;
 import com.invaders.game.camera.OrthoCamera;
+import com.invaders.game.entity.EntityManager;
 import com.invaders.game.screen.Screen;
-import com.invaders.game.texture.TextureManager;
+import com.invaders.game.sound.SoundManager;
 
 /**
- * Created by aliyuabdullahi on 9/7/16.
+ * Created by aliyuabdullahi on 9/11/16.
  */
-public class GameOver extends Screen {
-
-    private Texture texture;
-
-    public GameOver(boolean won){
-        if(won){
-            texture = TextureManager.GAME_WON;
-        }
-        else{
-            texture = TextureManager.GAME_OVER;
-        }
-    }
-
-    OrthoCamera camera;
+public class IntroScreen extends Screen {
+    private OrthoCamera camera;
+    private Sound sound;
     @Override
     public void create() {
         camera = new OrthoCamera();
+       // sound = SoundManager.GAME_SOUND;
         camera.resize();
     }
 
@@ -34,7 +24,7 @@ public class GameOver extends Screen {
     public void render(SpriteBatch spriteBatch) {
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
-        spriteBatch.draw(texture, Invaders.WIDTH/2 - texture.getWidth()/2 + 25, Invaders.HEIGHT/2 - texture.getHeight()/2);
+
         spriteBatch.end();
     }
 

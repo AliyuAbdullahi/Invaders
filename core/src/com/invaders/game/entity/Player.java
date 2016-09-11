@@ -2,8 +2,12 @@ package com.invaders.game.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.invaders.game.Invaders;
+import com.invaders.game.sound.SoundManager;
+import com.invaders.game.sound.SoundProvider;
 import com.invaders.game.texture.TextureManager;
 
 /**
@@ -12,7 +16,9 @@ import com.invaders.game.texture.TextureManager;
 public class Player extends Entity {
     EntityManager entityManager;
     private long lastFire;
-    public long soundId;
+    public static Sound sound;
+    public static long soundId;
+
     public Player(Texture texture, Vector2 position, Vector2 direction, EntityManager entityManager) {
         super(texture, position, direction);
         this.entityManager = entityManager;
@@ -22,11 +28,9 @@ public class Player extends Entity {
     public void update() {
         position.add(direction);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+        if (Gdx.input.isKeyPressed(Input.Keys.A) && this.getPosition().x > 0) {
             setDirection(-300, 0);
-        }
-
-        else if(Gdx.input.isKeyPressed(Input.Keys.D))
+        } else if (Gdx.input.isKeyPressed(Input.Keys.D) && this.getPosition().x < Invaders.WIDTH)
             setDirection(300, 0);
         else
             setDirection(0, 0);
@@ -40,10 +44,10 @@ public class Player extends Entity {
 
         //Auto Fire
 
-            if(System.currentTimeMillis() - lastFire >= 700){
-                entityManager.addEntity(new Missile(position.cpy().add(25, TextureManager.PLAYER.getHeight())));
-                lastFire = System.currentTimeMillis();
-            }
-
+        if (System.currentTimeMillis() - lastFire >= 700) {
+            entityManager.addEntity(new Missile(position.cpy().add(25, TextureManager.PLAYER.getHeight())));
+            soundId = SoundProvider.playSound(SoundProvider.InvaderSound.DEFAULT_GUN, sound, false);
+            lastFire = System.currentTimeMillis();
+        }
     }
 }

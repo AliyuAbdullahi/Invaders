@@ -8,7 +8,6 @@ import com.invaders.game.Invaders;
  * Created by aliyuabdullahi on 9/7/16.
  */
 public class SoundProvider {
-    static Sound sound;
 
     public enum InvaderSound {
         GAME_SOUND("gamesoundmenu.mp3"),
@@ -16,7 +15,7 @@ public class SoundProvider {
         BOSS_FIGHT_SOUND("gamesoundboss.mp3"),
         PLAYER_DEAD("playerdead.wav"),
         ENEMY_DEAD("enemydead.wav"),
-        DEFAULT_GUN("defaultgun"),
+        DEFAULT_GUN("defaultgun.wav"),
         WAR_HAMMER("warhammer.wav"),
         POWER_UP("powerup.wav"),
         HEAVY_CANON("heavygun.wav"),
@@ -37,14 +36,14 @@ public class SoundProvider {
         }
     }
 
-    public static long playSound(InvaderSound snd, boolean loop) {
+    public static long playSound(InvaderSound snd, Sound sound, boolean loop) {
         sound = Gdx.audio.newSound(Gdx.files.internal(snd.getPath()));
         long id = sound.play();
         sound.setLooping(id, loop);
         return id;
     }
 
-    public static void stopSound(long id) {
-        sound.stop(id);
+    public static void stopSound(Sound sound, long soundId) {
+        sound.stop(soundId);
     }
 }
